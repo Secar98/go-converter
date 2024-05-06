@@ -10,6 +10,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 - Go (version 1.22.2 or later)
 - Docker
+- ImageMagick
+- LibreOffice
 
 ### Installing
 
