@@ -15,11 +15,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/yourrepository.git
+    git clone https://github.com/Secar98/go-converter.git
     ```
 2. Navigate to the project directory:
     ```sh
-    cd yourrepository
+    cd go-converter
     ```
 3. Download the Go dependencies:
     ```sh
@@ -38,12 +38,12 @@ The application will start a server on port 8080.
 ## Docker
 This project includes a Dockerfile for building a Docker image of the application. You can build the image using the following command:
 ```sh
-docker build -t yourimagename .
+docker build -t go-converter .
 ```
 
 And then run the image with:
 ```sh
-docker run -p 8080:8080 yourimagename
+docker run -rm -p 8080:8080 go-converter
 ```
 
 This will start the application inside a Docker container and map port 8080 of the container to port 8080 of your host machine.
