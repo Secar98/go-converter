@@ -48,7 +48,12 @@ And then run the image with:
 docker run -rm -p 8080:8080 go-converter
 ```
 
-This will start the application inside a Docker container and map port 8080 of the container to port 8080 of your host machine.
+This will start the application inside a Docker container and map port 8080 of the container to port 8080 on your host machine.
+
+You can also use the docker-compose file:
+```sh
+docker-compose up
+```
 
 ## Endpoints:
 
