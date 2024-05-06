@@ -1,4 +1,4 @@
-module github.com/secar98/converter
+module github.com/secar98/go-converter
 
 go 1.22.2
 

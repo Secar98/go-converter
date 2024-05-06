@@ -7,8 +7,7 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"github.com/secar98/converter/handlers"
-	"github.com/secar98/converter/middleware"
+	"github.com/secar98/go-converter/cmd"
 )
 
 func main() {
@@ -23,12 +22,12 @@ func main() {
 		os.Mkdir("uploads", 0777)
 	}
 
-	http.HandleFunc("POST /convert", handlers.ConvertHandler)
-	http.HandleFunc("POST /convert-img", handlers.ConvertImageHandler)
+	http.HandleFunc("POST /convert", cmd.ConvertHandler)
+	http.HandleFunc("POST /convert-img", cmd.ConvertImageHandler)
 	http.Handle("GET /metrics", promhttp.Handler())
-	prometheus.Register(middleware.HttpDuration)
+	prometheus.Register(cmd.HttpDuration)
 
-	metricsRouter := middleware.PrometheusMiddleware(http.DefaultServeMux)
+	metricsRouter := cmd.PrometheusMiddleware(http.DefaultServeMux)
 
 	log.Println("Starting server on :" + port)
 	http.ListenAndServe(":"+port, metricsRouter)

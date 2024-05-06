@@ -1,4 +1,4 @@
-package handlers
+package cmd
 
 import (
 	"io"
@@ -9,8 +9,6 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/secar98/converter/utils"
 )
 
 func ConvertImageHandler(w http.ResponseWriter, r *http.Request) {
@@ -24,7 +22,7 @@ func ConvertImageHandler(w http.ResponseWriter, r *http.Request) {
 
 	defer file.Close()
 
-	fileType := r.FormValue("type")
+	fileType := r.FormValue("format")
 	if fileType == "" {
 		http.Error(w, "No type provided", http.StatusBadRequest)
 		return
@@ -63,7 +61,7 @@ func ConvertImageHandler(w http.ResponseWriter, r *http.Request) {
 	defer os.Remove(fname)
 	defer os.Remove(outputPath)
 
-	contentType := utils.HandleImageFormat(fileType)
+	contentType := HandleImageFormat(fileType)
 	w.Header().Set("Content-Type", contentType)
 	w.Write(content)
 }
@@ -71,7 +69,7 @@ func ConvertImageHandler(w http.ResponseWriter, r *http.Request) {
 func ConvertHandler(w http.ResponseWriter, r *http.Request) {
 	const uploadPath = "uploads/"
 
-	convertType := r.FormValue("type")
+	convertType := r.FormValue("format")
 	if convertType == "" {
 		http.Error(w, "No type provided", http.StatusBadRequest)
 		return
@@ -125,7 +123,7 @@ func ConvertHandler(w http.ResponseWriter, r *http.Request) {
 	defer os.Remove(nameParts[0] + "." + convertType)
 	defer os.Remove(nameParts[0] + "." + nameParts[1])
 
-	contentType := utils.HandleFileFormat(convertType)
+	contentType := HandleFileFormat(convertType)
 	w.Header().Set("Content-Type", contentType)
 	w.Write(content)
 }

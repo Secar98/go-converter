@@ -1,4 +1,4 @@
-package utils
+package cmd
 
 func HandleFileFormat(convertType string) string {
 	switch convertType {
